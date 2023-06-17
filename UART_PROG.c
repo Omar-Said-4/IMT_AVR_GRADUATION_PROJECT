@@ -13,8 +13,11 @@
 static void(*UART_REC_CALLBACK)(void)=0;
 void UART_VidDisable()
 {
-	CLR_BIT(UCSRB,3);
-	CLR_BIT(UCSRB,4);
+	CLR_BIT(UCSRB,TXEN);
+	CLR_BIT(UCSRB,RXEN);
+#if (MODE == INTERRUPT_MODE)
+	CLR_BIT(UCSRB,RXCIE);
+#endif
 }
 void UART_VidInit(u8 bits)
 {
@@ -25,14 +28,14 @@ void UART_VidInit(u8 bits)
 		bits-=5;
 		bits<<=1;
 		UCSRC|=bits;
-		CLR_BIT(UCSRB,2);
+		CLR_BIT(UCSRB,UCSZ2);
 	}
 	else
 	{
 	  bits-=6;
 	  bits<<=1;
       UCSRC|=bits;
-      SET_BIT(UCSRB,2);
+      SET_BIT(UCSRB,UCSZ2);
 	}
 //	CLR_BIT(UBRRH,7);
 //    SET_BIT(UCSRC,1);
@@ -45,23 +48,23 @@ void UART_VidInit(u8 bits)
 	UBRRH=BAUD_RATE_HIGH_VAL;
 //	/*ENABLE TRANSMITTER AND RECIEVER*/
 
-	SET_BIT(UCSRB,3);
-	SET_BIT(UCSRB,4);
+	SET_BIT(UCSRB,TXEN);
+	SET_BIT(UCSRB,RXEN);
 #if (MODE == INTERRUPT_MODE)
-	SET_BIT(UCSRB,7);
+	SET_BIT(UCSRB,RXCIE);
 #endif
 }
 
 void UART_VidSendData(u8 data)
 {
-   while(!GET_BIT(UCSRA,5));
+   while(!GET_BIT(UCSRA,UDRE));
    UDR=data;
 }
 
 u8 UART_U8RecieveData()
 {
 #if (MODE == POLLING_MOD)
-	while(!GET_BIT(UCSRA,7));
+	while(!GET_BIT(UCSRA,RXC));
 #endif
 	   return UDR;
 }

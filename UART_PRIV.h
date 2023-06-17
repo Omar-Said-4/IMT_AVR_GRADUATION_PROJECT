@@ -24,5 +24,11 @@
 #define INTERRUPT_MOD 0
 #define POLLING_MOD 1
 #define MODE INTERRUPT_MOD
+#define RXC 7
+#define RXCIE 7
+#define UDRE 5
+#define UCSZ2 2
+#define TXEN 3
+#define RXEN 4
 void __vector_13(void) __attribute__((signal));
 #endif
