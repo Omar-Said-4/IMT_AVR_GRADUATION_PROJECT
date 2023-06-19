@@ -19,6 +19,52 @@ void UART_VidDisable()
 	CLR_BIT(UCSRB,RXCIE);
 #endif
 }
+void UART_VidPrintString(string x)
+{
+	for(int i=0;x[i]!='\0';i++)
+	{
+		UART_VidSendData(x[i]);
+	}
+}
+void UART_VidParseInt(s32 num)
+{
+	u8 x=0;
+	s32 rev =0;
+	bool neg=false;
+	if(num<0)
+	{neg=true;
+	num=-num;}
+	if(num==0)
+	{
+		UART_VidSendData(48);
+		return;
+	}
+	if(neg)
+		UART_VidSendData('-');
+	while(num)
+	{
+		rev=(rev*10)+(num%10);
+		num/=10;
+		x++;
+	}
+
+	while(x)
+	{
+		u8 p=rev%10+48;
+		UART_VidSendData(p);
+		rev/=10;
+		x--;
+	}
+}
+void UART_VidParseFloat(f32 x)
+{
+	s32 intx= (s32)x;
+	UART_VidParseInt(intx);
+	UART_VidSendData('.');
+	u8 fx=(u8)((x-intx)*1000.0);
+	UART_VidParseInt(fx);
+
+}
 void UART_VidInit(u8 bits)
 {
 
