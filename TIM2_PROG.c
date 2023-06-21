@@ -58,6 +58,6 @@ void TIM2_VidInit(u16 FREQ)
 void TIM2_VidWritePwm(u8 val)
 {
 
-		OCR2=val;
+		OCR2=(val*255)/100;
 
 }
