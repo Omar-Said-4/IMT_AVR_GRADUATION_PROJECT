@@ -2,6 +2,8 @@
 #include "DIO_int.h"
 #include "motors_config.h"
 #include "motors_int.h"
+#include "TIM0_INTERFACE.h"
+#include "TIM2_INTERFACE.h"
 void MOTORS_VidMoveForward (void)
 {
 	// Left Motors CCW
@@ -45,4 +47,9 @@ void MOTORS_VidStop (void)
 	DIO_VidSetPinValue(MOTORS_PORT,IN2,PinLow);
 	DIO_VidSetPinValue(MOTORS_PORT,IN3,PinLow);
 	DIO_VidSetPinValue(MOTORS_PORT,IN4,PinLow);
+}
+void MOTORS_SetSpeed (u8 Copy_u8MotorSpeed)
+{
+	TIM0_VidWritePwm(Copy_u8MotorSpeed);
+	TIM2_VidWritePwm(Copy_u8MotorSpeed);
 }
