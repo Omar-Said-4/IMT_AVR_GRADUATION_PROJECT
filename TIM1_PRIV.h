@@ -15,6 +15,7 @@
 #define TCCR1A *((volatile u8*)0x4F)
 #define TCCR1B *((volatile u8*)0x4E)
 #define TCNT1H *((volatile u8*)0x4D)
+#define TCNT1 *((volatile u16*)0x4C)
 #define TCNT1L *((volatile u8*)0x4C)
 #define OCR1AH *((volatile u8*)0x4B)
 #define OCR1AL *((volatile u8*)0x4A)
@@ -42,8 +43,8 @@
 #define INVERTING_MODE 0
 #define NON_INVERTING_MODE 1
 
-void __vector_9(void) __attribute__((signal));
+void __vector_6(void) __attribute__((signal));
 void __vector_8(void) __attribute__((signal));
-
+void __vector_9(void) __attribute__((signal));
 
 #endif

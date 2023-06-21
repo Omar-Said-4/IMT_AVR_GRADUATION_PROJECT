@@ -40,22 +40,17 @@ void TIM1_VidInit()
 void TIM1_VidSetICR1(u16 val)
 {
     ICR1=val;
-	//PWM_MAX_VAL=val;
 }
 #endif
 #if (TIM1_OPERATION_MODE==FAST_PWM_ICR1)
 void TIM1_VidWritePwmOCR1A(u16 val)
 {
-	//if(val>PWM_MAX_VAL)
-		//OCR1A=(val%PWM_MAX_VAL);
-	//else
+
 		OCR1A=val;
 }
 #endif
 void TIM1_VidWritePwmOCR1B(u16 val)
 {
-	//if(val>PWM_MAX_VAL)
-		//OCR1B=(u16)(val%PWM_MAX_VAL);
-	//else
+
 		OCR1BH=val;
 }
