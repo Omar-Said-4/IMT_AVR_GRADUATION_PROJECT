@@ -56,7 +56,7 @@ void SPI_VidSlaveInit()
 	DIO_VidSetPinDirection(1,7,0);
 	u8 SPCR_HELP=0;
 
-	SET_BIT(SPCR_HELP,4);
+	SET_BIT(SPCR_HELP,6);
 
 	/*Set Slave*/
 	CLR_BIT(SPCR_HELP,4);
