@@ -26,9 +26,9 @@ void main()
 //   TWI_VidInit();
 //   MPU_VidInit();
 // 	f32 accx,accy,accz,gyrox,gyroy,gyroz,temp;
-    string tx_message="Omar";
     NRF_VidInit();
     INTR_VidI0Cb(test);
+    /*recieve
 	NRF_VidStartListening();
 	while(1)
 	{
@@ -36,12 +36,31 @@ void main()
 				{
 					//	Message received, print it
 					message_received = false;
-				//	printf("Received message: %s\n",nrf24_read_message());
 					//	Send message as response
-					_delay_ms(500);
-					//status = NRF_U8SendMessage(tx_message);
-					//if (status == true);// printf("Message sent successfully\n");
+					  if(    NRF_VidReadMessage()[0]=='O')
+					  {
+
+					  //led on
+					  }
+					_delay_ms(200);
+
 				}
+		*/
+    /*send*/
+/*
+    string tx_message="Omar";
+
+    while(1)
+    {
+		status = NRF_U8SendMessage(tx_message,4);
+							_delay_ms(500);
+
+		if (status == true)
+		{
+			//led on
+		}
+    }
+    */
 //		accx=1;
 //     MPU_VidGetReadings(&accx,&accy,&accz,&temp,&gyrox,&gyroy,&gyroz);
 //     UART_VidPrintString("accx= ");

@@ -166,7 +166,6 @@ void NRF_VidState(u8 state)
 void NRF_VidStartListening(void)
 {
 	NRF_VidState(RECEIVE);				// Receive mode
-	//if (AUTO_ACK) nrf24_write_ack();	// Write acknowledgment
 	DIO_VidSetPinValue(CE,1);
 	_delay_us(150);						// Settling time
 }

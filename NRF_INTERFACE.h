@@ -18,6 +18,6 @@ void NRF_VidState(u8 state);
 u8 NRF_U8Read(u8 register_address, u8 *data, u32 bytes);
 void NRF_VidStartListening(void);
 u8 NRF_VidAvailable(void);
-bool NRF_U8SendMessage(const void *tx_message);
+bool NRF_U8SendMessage(const void *tx_message,u8 length);
 const char * NRF_VidReadMessage(void);
 #endif /* NRF_INTERFACE_H_ */
