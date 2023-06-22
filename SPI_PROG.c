@@ -15,7 +15,7 @@
 static void(*SPI_SLAVE_CALLBACK)(void)=0;
 void __vector_12(void)
 {
-  SPI_SLAVE_CALLBACK();
+	SPI_SLAVE_CALLBACK();
 }
 
 
@@ -25,27 +25,26 @@ void SPI_VidMasterInit()
 	DIO_VidSetPinDirection(1,6,0);
 	DIO_VidSetPinDirection(1,4,1);
 	DIO_VidSetPinDirection(1,7,1);
-	
+
+	u8 SPCR_HELP=0;
 	/*SPI Enable*/
-	SET_BIT(SPCR,6);
-	
+	SET_BIT(SPCR_HELP,6);
+
 	/*Set Master*/
-	SET_BIT(SPCR,4);
-	
+	SET_BIT(SPCR_HELP,4);
+
 	/*Clock Polarity Rising*/
-	CLR_BIT(SPCR,3);
-	
+	CLR_BIT(SPCR_HELP,3);
+
 	/*Clock Phase no sampling*/
-	SET_BIT(SPCR,2);
-	
+	SET_BIT(SPCR_HELP,2);
+
 	/*Lowest Prescalar*/
-	SET_BIT(SPCR,1);
-	SET_BIT(SPCR,0);
+	SET_BIT(SPCR_HELP,0);
 
-	/* Disable Interrupt */
-	CLR_BIT(SPCR,7);
+	SPCR =SPCR_HELP;
 
-	
+
 }
 
 
@@ -55,27 +54,23 @@ void SPI_VidSlaveInit()
 	DIO_VidSetPinDirection(1,6,1);
 	DIO_VidSetPinDirection(1,4,0);
 	DIO_VidSetPinDirection(1,7,0);
-	/*SPI ENable*/
-    SET_BIT(SPCR,6);
+	u8 SPCR_HELP=0;
+
+	SET_BIT(SPCR_HELP,4);
 
 	/*Set Slave*/
-	CLR_BIT(SPCR,4);
-	
+	CLR_BIT(SPCR_HELP,6);
+
 	/*Clock Phase no sampling*/
-	SET_BIT(SPCR,2);
-	
+	SET_BIT(SPCR_HELP,2);
+
 	/*Clock Polarity Rising*/
-	CLR_BIT(SPCR,3);
-	
-	/*
-	Lowest Prescalar useless
-	SET_BIT(SPCR,1);
-	SET_BIT(SPCR,0);
-    */
+	CLR_BIT(SPCR_HELP,3);
 
+	/*Lowest Prescalar useless*/
 	/* Enable Interrupt */
-	SET_BIT(SPCR,7);
-
+	SET_BIT(SPCR_HELP,7);
+	SPCR=SPCR_HELP;
 }
 
 
@@ -88,5 +83,5 @@ u8 SPI_U8Transaction(u8 data)
 }
 void SPI_VidSetRecCb(void(*ptr)(void))
 {
-SPI_SLAVE_CALLBACK=ptr;
+	SPI_SLAVE_CALLBACK=ptr;
 }
