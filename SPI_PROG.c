@@ -59,7 +59,7 @@ void SPI_VidSlaveInit()
 	SET_BIT(SPCR_HELP,4);
 
 	/*Set Slave*/
-	CLR_BIT(SPCR_HELP,6);
+	CLR_BIT(SPCR_HELP,4);
 
 	/*Clock Phase no sampling*/
 	SET_BIT(SPCR_HELP,2);
