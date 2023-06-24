@@ -26,23 +26,7 @@ void SPI_VidMasterInit()
 	DIO_VidSetPinDirection(1,4,1);
 	DIO_VidSetPinDirection(1,7,1);
 
-	u8 SPCR_HELP=0;
-	/*SPI Enable*/
-	SET_BIT(SPCR_HELP,6);
-
-	/*Set Master*/
-	SET_BIT(SPCR_HELP,4);
-
-	/*Clock Polarity Rising*/
-	CLR_BIT(SPCR_HELP,3);
-
-	/*Clock Phase no sampling*/
-	SET_BIT(SPCR_HELP,2);
-
-	/*Lowest Prescalar*/
-	SET_BIT(SPCR_HELP,0);
-
-	SPCR =SPCR_HELP;
+	SPCR|=(1<<6)|(1<<4)|(1<<0);
 
 
 }
