@@ -10,8 +10,8 @@
 
 /* SPI commands */
 #define REGISTER_MASK		0b00011111
-#define R_REGISTER		0b00000000 /* 000A AAAA | AAAAA = 5-bit register map address */
-#define W_REGISTER		0b00100000 /* 001A AAAA */
+#define R_REGISTER		0b00000000
+#define W_REGISTER		0b00100000
 #define R_RX_PAYLOAD		0b01100001
 #define W_TX_PAYLOAD		0b10100000
 #define FLUSH_TX		0b11100001
@@ -20,7 +20,7 @@
 #define ACTIVATE		0b01010000
 #define R_RX_PL_WID		0b01100000
 #define ACK_PAYLOAD_MASK	0b00000111
-#define W_ACK_PAYLOAD		0b10101000 /* 1010 1PPP | PPP = pipe number */
+#define W_ACK_PAYLOAD		0b10101000
 #define W_TX_PAYLOAD_NOACK	0b10110000
 #define NOP			0b11111111
 
@@ -34,9 +34,7 @@
 #define PWR_UP			1
 #define PRIM_RX			0
 
-/* EN_AA: Enhanced ShockBurst™
- * Enable 'Auto Acknowledgment' function.  Disable this functionality
- * to be compatible with nRF2401. */
+/* EN_AA: Enhanced ShockBurst */
 #define EN_AA			0x01
 #define ENAA_P5			5
 #define ENAA_P4			4
@@ -70,8 +68,8 @@
 #define CONT_WAVE		7
 #define RF_DR_LOW		5
 #define PLL_LOCK		4
-#define RF_DR_HIGH		3				/* RF_DR:RF_DR_LOW = RF data rate */
-#define RF_DR_250KBPS	0b00100000		/* available on nRF24L01+ */
+#define RF_DR_HIGH		3
+#define RF_DR_250KBPS	0b00100000
 #define RF_DR_1MBPS		0b00000000
 #define RF_DR_2MBPS		0b00001000
 #define RF_PWR			1				/* 2:1 */
@@ -150,7 +148,7 @@
 #define AUTO_ACK		0
 #define DATARATE		RF_DR_2MBPS
 #define POWER			POWER_MAX
-#define CHANNEL			0x74
+#define CHANNEL			100           //0x74
 #define DYN_PAYLOAD		1
 #define CONTINUOUS		0
 #define READ_PIPE		0

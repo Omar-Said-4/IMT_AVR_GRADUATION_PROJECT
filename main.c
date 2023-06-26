@@ -20,47 +20,60 @@ void main()
 {
 
 	GIE_VidEnable();
-
-	//UART_VidInit(8);
+	UART_VidInit(8);
 	//UTS_VidInit();
-//   TWI_VidInit();
-//   MPU_VidInit();
-// 	f32 accx,accy,accz,gyrox,gyroy,gyroz,temp;
-    NRF_VidInit();
-    INTR_VidI0Cb(test);
-    /*recieve
+	//   TWI_VidInit();
+	//   MPU_VidInit();
+	// 	f32 accx,accy,accz,gyrox,gyroy,gyroz,temp;
+
+	NRF_VidInit();
+	NRF_VidPrintConfig();
+	_delay_ms(5000);
+	//    INTR_VidI0Cb(test);
+	/*recieve*/
+//	string tx_message="Omar";
+//	while(1){
+//		status=NRF_U8SendMessage(tx_message,4);
+//		if(status){
+//			UART_VidPrintString("message sent\n\r");
+//		}
+//		_delay_ms(1000);
+//	}
+//}
 	NRF_VidStartListening();
 	while(1)
 	{
-		if (message_received)
+		if (NRF_VidAvailable())
 				{
 					//	Message received, print it
 					message_received = false;
-					//	Send message as response
-					  if(    NRF_VidReadMessage()[0]=='O')
-					  {
+					  UART_VidPrintString("Av\n\r");
 
-					  //led on
-					  }
-					_delay_ms(200);
+					//	Send message as response
+					 NRF_VidReadMessage();
+					  //UART_VidPrintString("\n\r");
 
 				}
-		*/
-    /*send*/
-/*
+
+	}
+}
+/*send
+
     string tx_message="Omar";
 
     while(1)
     {
+
 		status = NRF_U8SendMessage(tx_message,4);
-							_delay_ms(500);
+
 
 		if (status == true)
 		{
-			//led on
+			  UART_VidPrintString("Message Sent\n\r");
+			       //  while(1);
 		}
     }
-    */
+ */
 //		accx=1;
 //     MPU_VidGetReadings(&accx,&accy,&accz,&temp,&gyrox,&gyroy,&gyroz);
 //     UART_VidPrintString("accx= ");
@@ -77,12 +90,11 @@ void main()
 //     UART_VidParseFloat(gyroy);
 //     UART_VidPrintString("  gyroz= ");
 //     UART_VidParseFloat(gyroz);
-		//UART_VidPrintString("Distance: ");
-	//	UART_VidParseFloat(UTS_F32GetReading());
-		//UART_VidPrintString(" Cm");
-     //UART_VidPrintString("\n\r");
+//UART_VidPrintString("Distance: ");
+//	UART_VidParseFloat(UTS_F32GetReading());
+//UART_VidPrintString(" Cm");
+//UART_VidPrintString("\n\r");
 
 
-	}
 
 

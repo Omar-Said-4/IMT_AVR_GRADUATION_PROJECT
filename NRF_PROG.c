@@ -14,8 +14,8 @@
 #include"STD_TYPES.h"
 #include"BIT_MATH.h"
 #include"EXIT_INTERFACE.h"
-static u8 rx_address[5] = { 0xe7, 0xe7, 0xe7, 0xe7, 0xe7 };	// Read pipe address
-static u8 tx_address[5] = { 0xe7, 0xe7, 0xe7, 0xe7, 0xe7 };	// Write pipe address
+static u8 rx_address[5] = { 0xe7, 0xe7, 0xe7, 0xe7, 0xe7 };	/* Read pipe address */
+static u8 tx_address[5] = { 0xe7, 0xe7, 0xe7, 0xe7, 0xe7 };	/* Write pipe address */
 u8 NRF_U8send_spi(u8 register_address, void *data, u32 bytes)
 {
 	u8 status;
@@ -34,9 +34,6 @@ u8 NRF_U8Write(u8 register_address, void *data, u32 bytes)
 }
 void NRF_VidInit(void)
 {
-
-	///EXIT_VidInit(INT0,Falling);
-	//DIO_VidSetPinValue(2,0,0);
 
 	/* Standby Mode */
 	DIO_VidSetPinDirection(CE,1);
@@ -81,7 +78,7 @@ void NRF_VidInit(void)
 	UART_VidPrintString("\n\r");
 
 
-	data = 0xF0;		/* Delay 4000us with 1 re-try (will be added in settings) */
+	data = 0xF0;		/* Delay 4000us with 1 retry */
 	UART_VidPrintString("SETUP_RETR1: ");
 	UART_VidParseInt(data);
 	UART_VidPrintString("\n\r");
@@ -248,9 +245,9 @@ void NRF_VidState(u8 state)
 }
 void NRF_VidStartListening(void)
 {
-	NRF_VidState(RECEIVE);				// Receive mode
+	NRF_VidState(RECEIVE);				/* Receive mode */
 	DIO_VidSetPinValue(CE,1);
-	_delay_us(150);						// Settling time
+	_delay_us(150);
 }
 bool NRF_VidAvailable(void)
 {
@@ -297,13 +294,11 @@ bool NRF_U8SendMessage(const void *tx_message,u8 length)
 	NRF_U8Read(STATUS,&data,1);
 
 	while(!(data & (1 << TX_DS))) NRF_U8Read(STATUS,&data,1);
-	DIO_VidSetPinValue(2,0,0);
 
 	NRF_U8Read(CONFIG,&data,1);
 	data &= ~(1 << MASK_RX_DR);
 	NRF_U8Write(CONFIG,&data,1);
 
-	//NRF_VidStartListening();
 
 	return true;
 }
@@ -316,14 +311,8 @@ const char * NRF_VidReadMessage(void)
 	u8 data;
 	NRF_U8Read(R_RX_PL_WID,&data,1);
 	if (data > 0) NRF_U8send_spi(R_RX_PAYLOAD,&rx_message,data+1);
-	UART_VidParseInt(data);
-//    if(data==4)
-//    {
-//    	UART_VidPrintString("message: \n\r");
-//
-//    	UART_VidPrintString(rx_message);
-//    	UART_VidPrintString("\n\r");
-//    }
+    UART_VidPrintString(rx_message);
+    UART_VidPrintString("\n\r");
 	u8 strlen=0;
 	for(u8 i=0;rx_message[i]!=0;i++)
 		strlen++;
@@ -332,6 +321,7 @@ const char * NRF_VidReadMessage(void)
 		// Clear RX interrupt
 		data = (1 << RX_DR);
 		NRF_U8Write(STATUS,&data,1);
+
 		if(data==4){
 
 			return rx_message;

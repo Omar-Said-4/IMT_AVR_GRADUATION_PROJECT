@@ -26,7 +26,7 @@ void SPI_VidMasterInit()
 	DIO_VidSetPinDirection(1,4,1);
 	DIO_VidSetPinDirection(1,7,1);
 
-	SPCR|=(1<<6)|(1<<4)|(1<<0);
+	SPCR|=(1<<SPE)|(1<<MSTR)|(1<<SPR0);
 
 
 }
@@ -38,23 +38,8 @@ void SPI_VidSlaveInit()
 	DIO_VidSetPinDirection(1,6,1);
 	DIO_VidSetPinDirection(1,4,0);
 	DIO_VidSetPinDirection(1,7,0);
-	u8 SPCR_HELP=0;
+	SPCR|=(1<<SPE)|(1<<SPIE)|(1<<SPR0);
 
-	SET_BIT(SPCR_HELP,6);
-
-	/*Set Slave*/
-	CLR_BIT(SPCR_HELP,4);
-
-	/*Clock Phase no sampling*/
-	SET_BIT(SPCR_HELP,2);
-
-	/*Clock Polarity Rising*/
-	CLR_BIT(SPCR_HELP,3);
-
-	/*Lowest Prescalar useless*/
-	/* Enable Interrupt */
-	SET_BIT(SPCR_HELP,7);
-	SPCR=SPCR_HELP;
 }
 
 
@@ -62,7 +47,7 @@ void SPI_VidSlaveInit()
 u8 SPI_U8Transaction(u8 data)
 {
 	SPDR=data;
-	while(!GET_BIT(SPSR,7));
+	while(!GET_BIT(SPSR,SPIF));
 	return SPDR;
 }
 void SPI_VidSetRecCb(void(*ptr)(void))

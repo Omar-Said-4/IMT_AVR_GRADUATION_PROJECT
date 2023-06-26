@@ -141,7 +141,7 @@ TIM0_VidGetPresValNORMAL(AlarmOrFreqOrPrescalar);
 void TIM0_VidWritePwm(u8 val)
 {
 	#if(PWM_MODE==NON_INVERTING_MODE)
-		OCR0=(val*255)/100;
+		OCR0=val;
 	#elif(PWM_MODE==INVERTING_MODE)
 		OCR0=255-val;
 	#endif

@@ -13,9 +13,9 @@
 void TWI_VidInit(void)
 {
    /* Bit Rate: 400.000 kHz */
-   TWBR=2;
+   TWBR=123;
    CLR_BIT(TWSR,1);
-   CLR_BIT(TWSR,0);
+   SET_BIT(TWSR,0);
   /* Slave Address =1 , No General Call Response*/
    TWAR = 0x02;
   /*Allow acknowledge, No interrupt , Start Peripheral*/
@@ -35,6 +35,7 @@ void TWI_VidStop(void)
 {
 	/* Send Stop Condition */
 	TWCR = (1 << 7) | (1 << 4) | (1 << 2);
+	while(TWCR&(1<<4));
 }
 void TWI_VidSendByte(u8 data)
 {
