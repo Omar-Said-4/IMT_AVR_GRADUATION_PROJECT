@@ -163,12 +163,13 @@ void NRF_VidInit(void)
 
 
 
-
+    NRF_U8send_spi(ACTIVATE,0,0);
+    NRF_U8send_spi(POSTACTIVATE,0,0);
 	/* Enable dynamic payload */
 	data =
 			(DYN_PAYLOAD << EN_DPL) |
 			(AUTO_ACK << EN_ACK_PAY) |
-			(AUTO_ACK << EN_DYN_ACK);
+			(!AUTO_ACK << EN_DYN_ACK);
 
 	UART_VidPrintString("FEATURE1: ");
 	UART_VidParseInt(data);
@@ -180,7 +181,6 @@ void NRF_VidInit(void)
 	UART_VidPrintString("\n\r");
 
 	/* flush tx,rx */
-	data = (1 << RX_DR) | (1 << TX_DS) | (1 << MAX_RT);
 	NRF_U8Write(FLUSH_RX,0,0);
 	NRF_U8Write(FLUSH_TX,0,0);
 
