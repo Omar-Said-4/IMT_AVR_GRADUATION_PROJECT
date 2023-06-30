@@ -8,6 +8,7 @@
 #include<avr/delay.h>
 #include"SVM_INTERFACE.h"
 #include"UTS_INTERFACE.h"
+#include"TWI_INTERFACE.h"
 #include"TIM2_INTERFACE.h"
 #include"NRF_INTERFACE.h"
 volatile bool message_received = false;
@@ -21,42 +22,59 @@ void main()
 
 	GIE_VidEnable();
 	UART_VidInit(8);
-	//UTS_VidInit();
-	//   TWI_VidInit();
+	UART_VidPrintString("TWI\n\r");
+	TWI_VidSlaveInit(); //rec
+
+
+
+
+	while(1)
+	{
+	   TWI_U8SlvRcv(); //rec
+
+		_delay_ms(100);
+//			TWI_VidStart();
+//			TWI_VidSendByte(0xD0);
+//			TWI_VidSendByte('O');    //send
+//			TWI_VidSendByte('m');
+//			TWI_VidSendByte('a');
+//			TWI_VidSendByte('r');
+//			TWI_VidStop();
+	}
 	//   MPU_VidInit();
 	// 	f32 accx,accy,accz,gyrox,gyroy,gyroz,temp;
 
-	NRF_VidInit();
-	NRF_VidPrintConfig();
-	_delay_ms(5000);
-	//    INTR_VidI0Cb(test);
-	/*recieve*/
-//	string tx_message="Omar";
+//	NRF_VidInit();
+//	NRF_VidPrintConfig();
+//	_delay_ms(5000);
+//	//    INTR_VidI0Cb(test);
+//	/*recieve*/
+//	string tx_message="Omars";
 //	while(1){
-//		status=NRF_U8SendMessage(tx_message,4);
+//		status=NRF_U8SendMessage(tx_message,5);
 //		if(status){
 //			UART_VidPrintString("message sent\n\r");
 //		}
 //		_delay_ms(1000);
 //	}
-//}
-	NRF_VidStartListening();
-	while(1)
-	{
-		if (NRF_VidAvailable())
-				{
-					//	Message received, print it
-					message_received = false;
-					  UART_VidPrintString("Av\n\r");
-
-					//	Send message as response
-					 NRF_VidReadMessage();
-					  //UART_VidPrintString("\n\r");
-
-				}
-
-	}
 }
+//	NRF_VidStartListening();
+//	while(1)
+//	{
+//		if (NRF_VidAvailable())
+//				{
+//					//	Message received, print it
+//					message_received = false;
+//					  UART_VidPrintString("Av\n\r");
+//
+//					//	Send message as response
+//					 NRF_VidReadMessage();
+//					  //UART_VidPrintString("\n\r");
+//
+//				}
+//
+//	}
+//}
 /*send
 
     string tx_message="Omar";
