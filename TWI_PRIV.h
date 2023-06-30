@@ -14,4 +14,10 @@
 #define TWAR *((volatile u8*)0x22)
 #define TWSR *((volatile u8*)0x21)
 #define TWI_BITRATE 2
+#define TWEN 2
+#define TWSTO 4
+#define TWIE 0
+#define TWSTA 5
+#define TWEA 6
+#define TWINT 7
 #endif /* TWI_PRIV_H_ */

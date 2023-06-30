@@ -8,58 +8,76 @@
 
 #include"TWI_INTERFACE.h"
 #include"STD_TYPES.h"
+#include"UART_INTERFACE.h"
 #include"BIT_MATH.h"
+#include<util/delay.h>
 
-void TWI_VidInit(void)
+void TWI_VidMasterInit(void)
 {
-   /* Bit Rate: 400.000 kHz */
-   TWBR=123;
-   CLR_BIT(TWSR,1);
-   SET_BIT(TWSR,0);
-  /* Slave Address =1 , No General Call Response*/
-   TWAR = 0x02;
-  /*Allow acknowledge, No interrupt , Start Peripheral*/
-   SET_BIT(TWCR,6);
-   CLR_BIT(TWCR,0);
-   SET_BIT(TWCR,2);
-}
+	/* Bit Rate: 400.000 kHz */
+	TWBR=123;
+	TWSR=0x01;
 
+}
+void TWI_VidSlaveInit()
+{
+	/* Slave Address =1 , No General Call Response*/
+	TWAR = 0xD0;
+	TWCR=(1<<TWEN)|(1<<TWEA)|(1<<TWINT);
+
+}
+void TWI_U8SlvRcv()
+{
+	while(!GET_BIT(TWCR,TWINT));
+	u8 status=TWI_U8GetStatus();
+	if(status==0x60)
+	{
+		TWCR=(1<<TWEN)|(1<<TWINT)|(1<<TWEA);
+	}
+	while(!GET_BIT(TWCR,TWINT));
+	status=TWI_U8GetStatus();
+	if(status==0x80)
+		UART_VidSendData(TWDR);
+
+}
 void TWI_VidStart(void)
 {
 	/* Send Start Condition */
-	TWCR = (1 << 7) | (1 << 5) | (1 << 2);
-    while(!GET_BIT(TWCR,7));
-
+	TWCR = (1 << TWSTA) | (1 << TWEN) | (1 << TWINT);
+	while(!GET_BIT(TWCR,TWINT));
+	UART_VidParseInt(TWI_U8GetStatus());
+	UART_VidPrintString("\n\r");
 }
 void TWI_VidStop(void)
 {
 	/* Send Stop Condition */
-	TWCR = (1 << 7) | (1 << 4) | (1 << 2);
-	while(TWCR&(1<<4));
+	TWCR = (1 << TWSTO) | (1 << TWEN) | (1 << TWINT);
+	while(TWCR&(1<<TWSTO));
 }
 void TWI_VidSendByte(u8 data)
 {
 	/* Load Data To TWDR */
 	TWDR = data;
 	/* Send Data  */
-	 TWCR = (1 << 7) | (1 << 2);
-	  while(!GET_BIT(TWCR,7));
+	TWCR = (1 << TWEN) | (1 << TWINT);
+	while(!GET_BIT(TWCR,TWINT));
+	UART_VidParseInt(TWI_U8GetStatus());
+    UART_VidPrintString("\n\r");
+
 }
 u8 TWI_U8ReadACK(void)
 {
-	TWCR = (1 << 7) | (1 << 2) | (1 << 6);    /* enable Ack */
+	TWCR = (1 << TWEN) | (1 << TWINT) | (1 << TWEA);    /* enable Ack */
 
-	  while(!GET_BIT(TWCR,7));
-
-	  /* Read Data */
-	  return TWDR;
+	while(!GET_BIT(TWCR,TWINT));
+	/* Read Data */
+	return TWDR;
 }
 u8 TWI_U8ReadNACK(void)
 {
-	TWCR = (1 << 7) | (1 << 2);   /* disable Ack */
+	TWCR = (1 << TWINT) | (1 << TWEN);   /* disable Ack */
 
-    while(!GET_BIT(TWCR,7));
-
+	while(!GET_BIT(TWCR,TWINT));
 	/* Read Data */
 	return TWDR;
 }

@@ -8,7 +8,7 @@
 #define TWI_INTERFACE_H_
 #include"TWI_PRIV.h"
 #include"STD_TYPES.h"
-void TWI_VidInit(void);
+void TWI_VidMasterInit(void);
 void TWI_VidStart(void);
 void TWI_VidStop(void);
 void TWI_VidSendByte(unsigned char data);
@@ -16,5 +16,7 @@ u8 TWI_U8ReadACK(void);
 u8 TWI_U8ReadNACK(void);
 u8 TWI_U8GetStatus(void);
 
+void TWI_VidSlaveInit();
+void TWI_U8SlvRcv();
 
 #endif /* TWI_INTERFACE_H_ */
