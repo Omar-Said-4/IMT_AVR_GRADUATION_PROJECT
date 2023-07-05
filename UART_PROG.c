@@ -58,10 +58,17 @@ void UART_VidParseInt(s32 num)
 }
 void UART_VidParseFloat(f32 x)
 {
+	if(x<0)
+	{
+		UART_VidSendData('-');
+		x=-x;
+	}
 	s32 intx= (s32)x;
 	UART_VidParseInt(intx);
 	UART_VidSendData('.');
-	u8 fx=(u8)((x-intx)*1000.0);
+	u32 fx=(u32)((x-intx)*1000.0);
+	if(fx<0)
+		fx=-fx;
 	UART_VidParseInt(fx);
 
 }
