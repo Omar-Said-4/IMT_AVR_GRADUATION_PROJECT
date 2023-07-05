@@ -20,4 +20,9 @@
 #define TWSTA 5
 #define TWEA 6
 #define TWINT 7
+#define TPWS0 0
+#define TWPS1 1
+#define SCL_CLK 100000
+#define BITRATE(TWSR)	((8000000/SCL_CLK)-16)/(2*power(4,(TWSR&((1<<0)|(1<<1)))))
+
 #endif /* TWI_PRIV_H_ */

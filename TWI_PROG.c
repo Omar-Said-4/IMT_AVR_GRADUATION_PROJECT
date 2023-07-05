@@ -8,15 +8,17 @@
 
 #include"TWI_INTERFACE.h"
 #include"STD_TYPES.h"
-#include"UART_INTERFACE.h"
+#include"TWI_PRIV.h"
+#include"MATH.h"
+//#include"UART_INTERFACE.h"
 #include"BIT_MATH.h"
-#include<util/delay.h>
+//#include<util/delay.h>
 
 void TWI_VidMasterInit(void)
 {
-	/* Bit Rate: 400.000 kHz */
-	TWBR=123;
-	TWSR=0x01;
+	/* Bit Rate: 100000 Hz */
+	TWBR=BITRATE(0x00);
+	//TWSR=0x01;
 
 }
 void TWI_VidSlaveInit()
@@ -35,24 +37,46 @@ void TWI_U8SlvRcv()
 		TWCR=(1<<TWEN)|(1<<TWINT)|(1<<TWEA);
 	}
 	while(!GET_BIT(TWCR,TWINT));
-	status=TWI_U8GetStatus();
-	if(status==0x80)
-		UART_VidSendData(TWDR);
+	//status=TWI_U8GetStatus();
+	//if(status==0x80)
+	//UART_VidSendData(TWDR);
 
 }
-void TWI_VidStart(void)
+void TWI_VidStartCheck(u8 address)
 {
-	/* Send Start Condition */
-	TWCR = (1 << TWSTA) | (1 << TWEN) | (1 << TWINT);
+	u8 status;
+	while (1)
+	{
+		TWCR = (1<<TWSTA)|(1<<TWEN)|(1<<TWINT);
+		while (!GET_BIT(TWCR,TWINT));
+		status = TWI_U8GetStatus();
+		if (status != 0x08)
+			continue;
+		TWI_VidSendByte(address);
+		status = TWI_U8GetStatus();
+		if (status != 0x18 )
+		{
+			TWI_VidStop();
+			continue;
+		}
+		break;
+	}
+
+}
+void TWI_VidStart(u8 address)
+{
+	TWCR = (1<<TWSTA)|(1<<TWEN)|(1<<TWINT);
+	while (!GET_BIT(TWCR,TWINT));
+	TWDR = address;
+	TWCR = (1 << TWEN) | (1 << TWINT);
 	while(!GET_BIT(TWCR,TWINT));
-	UART_VidParseInt(TWI_U8GetStatus());
-	UART_VidPrintString("\n\r");
+
 }
 void TWI_VidStop(void)
 {
 	/* Send Stop Condition */
 	TWCR = (1 << TWSTO) | (1 << TWEN) | (1 << TWINT);
-	while(TWCR&(1<<TWSTO));
+	while(!GET_BIT(TWCR,TWSTO));
 }
 void TWI_VidSendByte(u8 data)
 {
@@ -61,8 +85,8 @@ void TWI_VidSendByte(u8 data)
 	/* Send Data  */
 	TWCR = (1 << TWEN) | (1 << TWINT);
 	while(!GET_BIT(TWCR,TWINT));
-	UART_VidParseInt(TWI_U8GetStatus());
-    UART_VidPrintString("\n\r");
+	//UART_VidParseInt(TWI_U8GetStatus());
+	//UART_VidPrintString("\n\r");
 
 }
 u8 TWI_U8ReadACK(void)
