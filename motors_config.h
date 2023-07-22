@@ -7,7 +7,7 @@
 #define IN1 Pin_0
 #define IN2 Pin_1
 #define IN3 Pin_2
-#define IN4 Pin_4
+#define IN4 Pin_3
 
 /* 2 Pins for Motors' PWM *
  * Pin 3 of Port B for Motor A (TIMER_0)
