@@ -3,7 +3,6 @@
 #include "motors_config.h"
 #include "TIM0_INTERFACE.h"
 #include "TIM2_INTERFACE.h"
-
 /*
  * IN1, IN2 for Right Motor
  * IN3, IN4 for Left Motor

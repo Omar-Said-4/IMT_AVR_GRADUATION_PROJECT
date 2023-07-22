@@ -1,6 +1,5 @@
 #ifndef MOTORS_CONFIG_H
-#define	MOTORS_CONFIG_H
-
+#define	MOTORS_CONFIG_
 /* Port used for Motors' Directional Pins */
 #define MOTORS_PORT Port_A
 /* 4 Directional Pins from Port A for the 2 Motors */
