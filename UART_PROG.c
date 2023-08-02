@@ -121,6 +121,14 @@ u8 UART_U8RecieveData()
 #endif
 	   return UDR;
 }
+u8 UART_U8GetData()
+{
+	   return UDR;
+}
+u8 UART_U8Available()
+{
+	return GET_BIT(UCSRA,RXC);
+}
 void UART_VidSetRecCb(void(*ptr)(void))
 {
 UART_REC_CALLBACK=ptr;

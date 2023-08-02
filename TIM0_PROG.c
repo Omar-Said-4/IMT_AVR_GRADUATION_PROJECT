@@ -68,11 +68,11 @@ void TIM0_VidGetPresValNORMAL(u16 AlarmOrFreq)
 	TCNT0=preload;
 	OVF_COUNTER++;
 	#elif(TIM0_OPERATION_MODE==FAST_PWM)
-     u16 minm=100000;
+     u32 minm=100000;
      	 
 	for(int i=1;i<=5;i++)
 	{
-   	    u16 xfreq=(8000000)/256;
+   	    u32 xfreq=(8000000)/256;
 		if(i==1);
 		else if(i==2)
 		{
@@ -107,7 +107,7 @@ void TIM0_VidGetPresValNORMAL(u16 AlarmOrFreq)
 }
 #endif
 /*takes alarm in normal mode, frequency in fast pwm mode, prescalar value in CTC mode*/
-void TIM0_VidInit(u16 AlarmOrFreqOrPrescalar)
+void TIM0_VidInit(u32 AlarmOrFreqOrPrescalar)
 {
 
 

@@ -23,6 +23,8 @@ void TIM1_VidSetPrescalar(u8 prescalar)
 }
 void TIM1_VidInit()
 {
+	TIMSK=0;
+
 	#if (TIM1_OPERATION_MODE==FAST_PWM_ICR1)
      	SET_BIT(TCCR1A,1);	
      	SET_BIT(TCCR1B,4);	
@@ -53,4 +55,10 @@ void TIM1_VidWritePwmOCR1B(u16 val)
 {
 
 		OCR1BH=val;
+}
+void TIM1_VidReset()
+{
+	TCCR1A=0;
+	TCCR1B=0;
+	ICR1=0;
 }

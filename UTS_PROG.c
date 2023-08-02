@@ -5,7 +5,7 @@
  *  Created on: Jun 19, 2023
  *      Author: saziz
  */
-#define TRIGGER_PIN 0,0
+#define TRIGGER_PIN 0,7
 #include<avr/delay.h>
 #include"DIO_INTERFACE.h"
 extern u32 snap1,snap2;
@@ -14,6 +14,10 @@ void UTS_VidInit()
 {
 	ICU_VidInit();
 	DIO_VidSetPinDirection(TRIGGER_PIN,1);
+}
+void UTS_VidStop()
+{
+	ICU_VidStop();
 }
 
 f32  UTS_F32GetReading()

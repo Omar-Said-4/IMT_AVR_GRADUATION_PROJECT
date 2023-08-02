@@ -20,6 +20,8 @@ void UART_VidParseInt(s32 x);
 void UART_VidParseFloat(f32 x);
 void UART_VidInit(u8 bits);
 void UART_VidDisable();
+u8 UART_U8Available();
+u8 UART_U8GetData();
 void UART_VidSetRecCb(void(*ptr)(void));
 u8 UART_U8RecieveData();
 #endif

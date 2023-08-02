@@ -1,80 +1,85 @@
-#include "STD_TYPES.h"
-#include "DIO_int.h"
-#include "GIE.h"
-#include "UART_INTERFACE.h"
-#include "BT_INTERFACE.h"
-#include "TIM0_INTERFACE.h"
-#include "TIM2_INTERFACE.h"
-#include "motors_config.h"
-#include "motors_int.h"
+/*
 
-int main()
-{
-	GIE_VidEnable();
-	u8 command;
-	BT_VidInit();
-	DIO_VidSetPinDirection(MOTORS_PORT,IN1,Output);
-	DIO_VidSetPinDirection(MOTORS_PORT,IN2,Output);
-	DIO_VidSetPinDirection(MOTORS_PORT,IN3,Output);
-	DIO_VidSetPinDirection(MOTORS_PORT,IN4,Output);
-	MOTORS_VidStop();
-	TIM0_VidInit(8);
-	TIM2_VidInit(8);
-	MOTORS_SetSpeed(100);
-	while(1)
+ * bluetooth_control.c
+ *
+ *  Created on: Jul 23, 2023
+ *      Author: saziz
+ */
+#include"STD_TYPES.h"
+#include"BIT_MATH.h"
+#include"DIO_INTERFACE.h"
+#include"motors_int.h"
+#include"UART_INTERFACE.h"
+#include"BT_INTERFACE.h"
+static u8 command=0;
+
+void BTC_VidProcess()
+{   if(UART_U8Available())
+    {
+      command=UART_U8GetData();
+    }
+	switch(command)
 	{
-		command = UART_U8RecieveData();
-		switch(command)
-		{
-			case 'F':
-				MOTORS_VidMoveForward();
-				break;
-			case 'B':
-				MOTORS_VidMoveBackward();
-				break;
-			case 'L':
-				MOTORS_VidMoveLeft();
-				break;
-			case 'R':
-				MOTORS_VidMoveRight();
-				break;
-			case 'S':
+	case 'F':
+		MOTORS_VidMoveForward();
+		command=0;
+		break;
+	case 'B':
+			MOTORS_VidMoveBackward();
+			command=0;
+			break;
+	case 'R':
+			MOTORS_VidMoveRight();
+			command=0;
+			break;
+	case 'L':
+			MOTORS_VidMoveLeft();
+			command=0;
+			break;
+	case 'S':
 				MOTORS_VidStop();
+				command=0;
 				break;
-			case '1':
-			      MOTORS_SetSpeed (10);
-			      break;
-			    case '2':
-			      MOTORS_SetSpeed (20);
-			      break;
-			    case '3':
-			    	MOTORS_SetSpeed (30);
-			      break;
-			    case '4':
-			    	MOTORS_SetSpeed (40);
-			      break;
-			      case '5':
-			    	  MOTORS_SetSpeed (50);
-			      break;
-			      case '6':
-			    	  MOTORS_SetSpeed (60);
-			      break;
-			      case '7':
-			    	  MOTORS_SetSpeed (70);
-			      break;
-			      case '8':
-			    	  MOTORS_SetSpeed (80);
-			      break;
-			      case '9':
-			    	  MOTORS_SetSpeed (90);
-			      break;
-			      case 'q':
-			    	  MOTORS_SetSpeed (100);
-			      break;
-			      default: break;
+	case '1':
+			MOTORS_SetSpeed(160);
+			command=0;
+			break;
+	case '2':
+			MOTORS_SetSpeed(165);
+			command=0;
+			break;
+	case '3':
+		MOTORS_SetSpeed(170);
+			command=0;
+			break;
+	case '4':
+		MOTORS_SetSpeed(180);
+			command=0;
+			break;
+	case '5':
+		MOTORS_SetSpeed(190);
+			command=0;
+			break;
+	case '6':
+		MOTORS_SetSpeed(200);
+			command=0;
+			break;
+	case '7':
+		MOTORS_SetSpeed(215);
+			command=0;
+			break;
+	case '8':
+		MOTORS_SetSpeed(235);
+			command=0;
+			break;
+	case '9':
+		MOTORS_SetSpeed(245);
+			command=0;
+			break;
+	case 'q':
+		MOTORS_SetSpeed(255);
+			command=0;
+			break;
 
-		}
 	}
-
-	return 0;
 }

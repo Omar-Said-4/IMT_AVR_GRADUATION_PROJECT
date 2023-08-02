@@ -16,4 +16,5 @@
 void ICU_VidInit();
 void ICU_VidStop();
 void ICU_VidStart();
+void ICU_VidDisInterrupt();
 #endif

@@ -11,11 +11,11 @@
 void TIM2_VidGetPresValNORMAL(u16 FREQ)
 {
 	u8 pres=1;
-	u16 minm=100000;
+	u32 minm=100000;
 
 	for(int i=1;i<=5;i++)
 	{
-		u16 xfreq=(8000000)/256;
+		u32 xfreq=(8000000)/256;
 		if(i==1);
 		else if(i==2)
 		{
@@ -46,7 +46,7 @@ void TIM2_VidGetPresValNORMAL(u16 FREQ)
 	TCCR2&=0b11111000;
 	TCCR2|=pres;
 }
-void TIM2_VidInit(u16 FREQ)
+void TIM2_VidInit(u32 FREQ)
 {
 	SET_BIT(TCCR2,3);
 	SET_BIT(TCCR2,6);

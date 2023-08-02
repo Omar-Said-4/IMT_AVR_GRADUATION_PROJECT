@@ -38,7 +38,7 @@ void SVM_SetAngleOC1B(u8 angle)
 #endif
 void SVM_VidSTOP()
 {
-	TIM1_VidSetPrescalar(0);
+	TIM1_VidReset();
 }
 
 

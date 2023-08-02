@@ -53,14 +53,14 @@ void NRF_VidInit(void)
 			(1 << CRC0) |						/* CRC scheme 2 bytes */
 			(1 << PWR_UP) |						/* Power up  */
 			(1 << PRIM_RX);
-	UART_VidPrintString("CONFIG1: ");
-	UART_VidParseInt(data);
+	//UART_VidPrintString("CONFIG1: ");
+	//UART_VidParseInt(data);
 	UART_VidPrintString("\n\r");
 	NRF_U8Write(CONFIG,&data,1);
 	NRF_U8Read(CONFIG,&check,1);
-	UART_VidPrintString("CONFIG: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+//	UART_VidPrintString("CONFIG: ");
+//	UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 	data =
 			(AUTO_ACK << ENAA_P5) |
 			(AUTO_ACK << ENAA_P4) |
@@ -68,63 +68,63 @@ void NRF_VidInit(void)
 			(AUTO_ACK << ENAA_P2) |
 			(AUTO_ACK << ENAA_P1) |
 			(AUTO_ACK << ENAA_P0);
-	UART_VidPrintString("EN_AA1: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("EN_AA1: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("\n\r");
 	NRF_U8Write(EN_AA,&data,1);
 	NRF_U8Read(EN_AA,&check,1);
-	UART_VidPrintString("EN_AA: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("EN_AA: ");
+	//UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 
 
 	data = 0xF0;		/* Delay 4000us with 1 retry */
-	UART_VidPrintString("SETUP_RETR1: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("SETUP_RETR1: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("\n\r");
 	NRF_U8Write(SETUP_RETR,&data,1);
 	NRF_U8Read(SETUP_RETR,&check,1);
-	UART_VidPrintString("SETUP_RETR: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("SETUP_RETR: ");
+	//UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 
 
 	/* Disable RX addresses */
 	data = 0;
-	UART_VidPrintString("EN_RXADDR1: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("EN_RXADDR1: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("\n\r");
 	NRF_U8Write(EN_RXADDR,&data,1);
 	NRF_U8Read(EN_RXADDR,&check,1);
-	UART_VidPrintString("EN_RXADDR: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("EN_RXADDR: ");
+	//UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 
 
 	/* Set channel */
 	data = CHANNEL;
-	UART_VidPrintString("RF_CH1: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("RF_CH1: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("\n\r");
 	NRF_U8Write(RF_CH,&data,1);
 	NRF_U8Read(RF_CH,&check,1);
-	UART_VidPrintString("RF_CH: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("RF_CH: ");
+	//UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 
 	data =
 			(CONTINUOUS << CONT_WAVE) |					/* Continuous carrier transmit */
 			((DATARATE >> RF_DR_HIGH) << RF_DR_HIGH) |	/* Data rate */
 			((POWER >> RF_PWR) << RF_PWR);				/* PA level */
 
-	UART_VidPrintString("RF_SETUP1: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("RF_SETUP1: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("\n\r");
 	NRF_U8Write(RF_SETUP,&data,1);
 	NRF_U8Read(RF_SETUP,&check,1);
-	UART_VidPrintString("RF_SETUP: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("RF_SETUP: ");
+	//UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 
 
 	/* Status Clear */
@@ -133,14 +133,14 @@ void NRF_VidInit(void)
 			(1 << TX_DS) |
 			(1 << MAX_RT);
 
-	UART_VidPrintString("STATUS1: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("STATUS1: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("\n\r");
 	NRF_U8Write(STATUS,&data,1);
 	NRF_U8Read(STATUS,&check,1);
-	UART_VidPrintString("STATUS: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("STATUS: ");
+	//UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 
 
 	/* Dynamic payload on all pipes */
@@ -152,14 +152,14 @@ void NRF_VidInit(void)
 			(DYN_PAYLOAD << DPL_P4) |
 			(DYN_PAYLOAD << DPL_P5);
 
-	UART_VidPrintString("DYNPD1: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("DYNPD1: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("\n\r");
 	NRF_U8Write(DYNPD,&data,1);
 	NRF_U8Read(DYNPD,&check,1);
-	UART_VidPrintString("DYNPD: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("DYNPD: ");
+	//UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 
 
 
@@ -171,14 +171,14 @@ void NRF_VidInit(void)
 			(AUTO_ACK << EN_ACK_PAY) |
 			(!AUTO_ACK << EN_DYN_ACK);
 
-	UART_VidPrintString("FEATURE1: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("FEATURE1: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("\n\r");
 	NRF_U8Write(FEATURE,&data,1);
 	NRF_U8Read(FEATURE,&check,1);
-	UART_VidPrintString("FEATURE: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("FEATURE: ");
+	//UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 
 	/* flush tx,rx */
 	NRF_U8Write(FLUSH_RX,0,0);
@@ -192,14 +192,14 @@ void NRF_VidInit(void)
 	/* Enable Pipe */
 	data = (1 << READ_PIPE);
 
-	UART_VidPrintString("EN_RXADDR1: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("EN_RXADDR1: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("\n\r");
 	NRF_U8Write(EN_RXADDR,&data,1);
 	NRF_U8Read(EN_RXADDR,&check,1);
-	UART_VidPrintString("EN_RXADDR: ");
-	UART_VidParseInt(check);
-	UART_VidPrintString("\n\r");
+	//UART_VidPrintString("EN_RXADDR: ");
+	//UART_VidParseInt(check);
+	//UART_VidPrintString("\n\r");
 }
 u8 NRF_U8Read(u8 register_address, u8 *data, u32 bytes)
 {
@@ -311,8 +311,8 @@ const char * NRF_VidReadMessage(void)
 	u8 data;
 	NRF_U8Read(R_RX_PL_WID,&data,1);
 	if (data > 0) NRF_U8send_spi(R_RX_PAYLOAD,&rx_message,data+1);
-    UART_VidPrintString(rx_message);
-    UART_VidPrintString("\n\r");
+   // UART_VidPrintString(rx_message);
+   // UART_VidPrintString("\n\r");
 	u8 strlen=0;
 	for(u8 i=0;rx_message[i]!=0;i++)
 		strlen++;
@@ -322,13 +322,13 @@ const char * NRF_VidReadMessage(void)
 		data = (1 << RX_DR);
 		NRF_U8Write(STATUS,&data,1);
 
-		if(data==4){
+		//if(data==4){
 
 			return rx_message;
-		}
+		//}
 	}
 	data = (1 << RX_DR);
-	NRF_U8Read(STATUS,&data,1);
+	NRF_U8Write(STATUS,&data,1);
 
 	return "failed";
 
@@ -336,40 +336,40 @@ const char * NRF_VidReadMessage(void)
 void NRF_VidPrintConfig(void)
 {
 	uint8_t data;
-	UART_VidPrintString("Startup successful\n\r");
+	//UART_VidPrintString("Startup successful\n\r");
 	printf("-------------------------------------------\n\r");
 	NRF_U8Read(CONFIG,&data,1);
-	UART_VidPrintString("CONFIG: ");
-	UART_VidParseInt(data);
+	//UART_VidPrintString("CONFIG: ");
+	//UART_VidParseInt(data);
 	NRF_U8Read(EN_AA,&data,1);
-	UART_VidPrintString("-------------------------------------------\n\r");
-	UART_VidPrintString("EN_AA: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("-------------------------------------------\n\r");
+	//UART_VidPrintString("-------------------------------------------\n\r");
+	//UART_VidPrintString("EN_AA: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("-------------------------------------------\n\r");
 	NRF_U8Read(EN_RXADDR,&data,1);
-	UART_VidPrintString("EN_RXADDR: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("-------------------------------------------\n\r");
+	//UART_VidPrintString("EN_RXADDR: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("-------------------------------------------\n\r");
 	NRF_U8Read(SETUP_RETR,&data,1);
-	UART_VidPrintString("SETUP_RETR: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("-------------------------------------------\n\r");
+	//UART_VidPrintString("SETUP_RETR: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("-------------------------------------------\n\r");
 	NRF_U8Read(RF_CH,&data,1);
-	UART_VidPrintString("RF_CH: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("-------------------------------------------\n\r");
+	//UART_VidPrintString("RF_CH: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("-------------------------------------------\n\r");
 	NRF_U8Read(RF_SETUP,&data,1);
-	UART_VidPrintString("RF_SETUP: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("-------------------------------------------\n\r");
+	//UART_VidPrintString("RF_SETUP: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("-------------------------------------------\n\r");
 	NRF_U8Read(STATUS,&data,1);
-	UART_VidPrintString("STATUS: ");
-	UART_VidParseInt(data);
-	UART_VidPrintString("-------------------------------------------\n\r");
+	//UART_VidPrintString("STATUS: ");
+	//UART_VidParseInt(data);
+	//UART_VidPrintString("-------------------------------------------\n\r");
 	NRF_U8Read(FEATURE,&data,1);
-	UART_VidPrintString("FEATURE: ");
-	UART_VidParseInt(data);
+	//UART_VidPrintString("FEATURE: ");
+	//UART_VidParseInt(data);
 
-	UART_VidPrintString("-------------------------------------------\n\r");
+	//UART_VidPrintString("-------------------------------------------\n\r");
 }
 

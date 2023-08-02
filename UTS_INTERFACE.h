@@ -12,5 +12,5 @@
 
 void UTS_VidInit();
 f32  UTS_F32GetReading();
-
+void UTS_VidStop();
 #endif /* UTS_INTERFACE_H_ */

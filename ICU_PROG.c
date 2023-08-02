@@ -38,6 +38,15 @@ void ICU_VidStart()
 void ICU_VidStop()
 {
 	CLR_BIT(TCCR1B,1);
+
+	//CLR_BIT(TIMSK,5);
+	//CLR_BIT(TIMSK,2);
+}
+void ICU_VidDisInterrupt()
+{
+
+	CLR_BIT(TIMSK,5);
+	CLR_BIT(TIMSK,2);
 }
 void __vector_9(void)
 {

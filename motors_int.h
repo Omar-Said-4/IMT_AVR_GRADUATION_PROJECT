@@ -1,5 +1,6 @@
 #ifndef MOTORS_INT_H
 #define	MOTORS_INT_H
+void MOTORS_VidInit(void);
 void MOTORS_VidMoveForward (void);
 void MOTORS_VidMoveBackward (void);
 void MOTORS_VidMoveRight (void);

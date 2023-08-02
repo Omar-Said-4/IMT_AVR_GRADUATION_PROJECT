@@ -19,4 +19,5 @@ void TIM1_VidInit();
 void TIM1_VidSetICR1(u16 val);
 void TIM1_VidWritePwmOCR1A(u16 val);
 void TIM1_VidWritePwmOCR1B(u16 val);
+void TIM1_VidReset();
 #endif

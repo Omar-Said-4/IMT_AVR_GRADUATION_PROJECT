@@ -23,7 +23,7 @@
 #define BAUD_RATE_HIGH_VAL 0
 #define INTERRUPT_MOD 0
 #define POLLING_MOD 1
-#define MODE INTERRUPT_MOD
+#define MODE POLLING_MOD
 #define RXC 7
 #define RXCIE 7
 #define UDRE 5
