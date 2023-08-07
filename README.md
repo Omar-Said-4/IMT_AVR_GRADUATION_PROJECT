@@ -3,7 +3,7 @@
 ## *Brief :*
 <p style="font-size: 20px; line-height: 1;"> this project was carried out as a fulfillment of the graduation project of the embedded systems AVR diploma at IMT to apply theoretical knowledge practically</p>
 <p style="font-size: 20px; line-height: 1;"> All drivers for all peripherals and components were implemented from scratch</p>
-<p style="font-size: 20px; line-height: 1;"> The project was implemented in 3 layers and 1 sub-layer</p>
+<p style="font-size: 20px; line-height: 1;"> The project was implemented in 3 layers and 1 sub-laye.r</p>
 1. <strong>Micro Controller Abstraction Layer (MCAL): </strong> includes drivers for all the used peripherals. <br>
 2. <strong>Hardware Abstraction Layer (HAL): </strong> includes drivers for all the used components.  <br>
 3. <strong>Application Layer : </strong> includes Application Code. <br>
