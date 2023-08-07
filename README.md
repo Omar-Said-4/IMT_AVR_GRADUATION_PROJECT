@@ -16,18 +16,18 @@
 1. <strong>Atmega32 microcontroller (x2).</strong>
 2. <strong>NRF24L01 (x2).</strong>
 3. <strong>Infrared Sensors (x2).</strong>
-4. <strong>L298N H-Bridge (x1)</strong>
-5. <strong>DC Motors (x2)</strong>
-6. <strong>HC05: Bluetooth Module (x1)</strong>
-7. <strong>Pusbuttons (x4)</strong>
-8. <strong>Leds (x4)</strong>
-9. <strong>MPU6050 gyroscope sensor (x1)</strong>
-10. <strong>Ultrasonic Sensor (x1)</strong>
-11. <strong>Servo Motor (x1)</strong>
+4. <strong>L298N H-Bridge (x1.)</strong>
+5. <strong>DC Motors (x2.)</strong>
+6. <strong>HC05: Bluetooth Module (x1).</strong>
+7. <strong>Pusbuttons (x4).</strong>
+8. <strong>Leds (x4.)</strong>
+9. <strong>MPU6050 gyroscope sensor (x1).</strong>
+10. <strong>Ultrasonic Sensor (x1).</strong>
+11. <strong>Servo Motor(x1).</strong>
 
 ## Used Atmega32 Peripherals:
-1. <strong>DIO</strong>
-2. <strong>TIM0, TIM2 for motors speed control</strong>
+1. <strong>DIO.</strong>
+2. <strong>TIM0, TIM2 for motors speed contro.l</strong>
 3. <strong>TIM1 for input capture unit used by ultrasonic sensor and Servo motor control.</strong>
 
 ## Used Communication Protocols:
