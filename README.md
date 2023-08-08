@@ -14,7 +14,7 @@
 
 ## Used Components:
 1. <strong>Atmega32 microcontroller (x2).</strong>
-2. <strong>NRF24L01 (x2).</strong>
+2. <strong>NRF24L01 Radio Transceiver (x2).</strong>
 3. <strong>Infrared Sensors (x2).</strong>
 4. <strong>L298N H-Bridge (x1).</strong>
 5. <strong>DC Motors (x2).</strong>
@@ -23,12 +23,12 @@
 8. <strong>Leds (x4.)</strong>
 9. <strong>MPU6050 gyroscope sensor (x1).</strong>
 10. <strong>Ultrasonic Sensor (x1).</strong>
-11. <strong>Servo Motor(x1).</strong>
+11. <strong>Servo Motor (SG90) (x1).</strong>
 
 ## Used Atmega32 Peripherals:
 1. <strong>DIO.</strong>
-2. <strong>TIM0, TIM2 for motors speed contro.l</strong>
-3. <strong>TIM1 for input capture unit used by ultrasonic sensor and Servo motor control.</strong>
+2. <strong>TIM0, TIM2 for dc motors speed control.</strong>
+3. <strong>TIM1 for ICU used by ultrasonic sensor and Servo motor control.</strong>
 
 ## Used Communication Protocols:
 1. <strong>UART.</strong>
@@ -38,21 +38,23 @@
 
 ## Project Description:
 ### The Project consists of two parts and four modes:
+
+
 ### First Part: 
-<p style="font-size: 20px; line-height: 1;"><strong>Wireless Controlling Gloves:</strong> for switching the car mode through push-buttons</p><br>
+#### <p style="font-size: 20px; line-height: 1;"><strong>Wireless Controlling Gloves:</strong> for switching the car mode through push-buttons and by sending specific commands through `NRF24l01` which uses `SPI` communication protocol.</p><br>
 <p style="font-size: 20px; line-height: 1;"> Also used in Gesture Control mode to control the car movement (explained later)</p>
 
 ### Second Part: 
-<p style="font-size: 20px; line-height: 1;"><strong>Wireless Controlled Car:</strong> that can operate in four modes</p><br>
+#### <p style="font-size: 20px; line-height: 1;"><strong>Wireless Controlled Car:</strong> that can operate in four modes (depending on the command received by the `NRF24l01` from the glove).</p><br>
 
 ### Four Modes:
-1. #### 🔵 **Bluetooth Mode**: <p style="font-size: 20px; line-height: 1;">the car can be controlled using any Bluetooth application through Bluetooth Module which uses UART communication protocol</p><br>
+1. #### 🔵 **Bluetooth Mode**: <p style="font-size: 20px; line-height: 1;">the car can be controlled using any Bluetooth application through Bluetooth Module which uses `UART `communication protocol</p><br>
 
-2. #### 🔵**Line Following with Obstacle Avoidance Mode**: <p style="font-size: 20px; line-height: 1;">the car moves avoiding Obstacles (using the Ultrasonic sensor and the servo motor) until it discovers a black line, it then starts to follow that line using the infrared sensors</p><br>
+2. #### 🔵**Line Following with Obstacle Avoidance Mode**: <p style="font-size: 20px; line-height: 1;">the car moves avoiding Obstacles (using the `Ultrasonic sensor` and the servo motor) until it discovers a black line, it then starts to follow that line using the `infrared sensors`</p><br>
 
-3. #### 🔵**Grid Mode**: <p style="font-size: 20px; line-height: 1;">the car is initially placed on a specific square in a 3x3 line-following Grid with squares numbered from 0 to 9, using Bluetooth Module, you can send to the car the square number you want it to go to, the car uses the IR sensors to move across the Grid.</p><br>
+3. #### 🔵**Grid Mode**: <p style="font-size: 20px; line-height: 1;">the car is initially placed on a specific square in a `3x3` line-following Grid with squares numbered from `0 to 8`, using Bluetooth Module, by first sending an `ACK` command then sending the square number you want the car to go to, the car uses the `IR sensors` to move across the Grid towards the desired location.</p><br>
 
-4. #### 🔵**gesture Control Mode**: <p style="font-size: 20px; line-height: 1;">Using the gloves, the car moves according to the tilt angle of your hand in four directions, the tilt angle is determined through the MPU6050 gyroscope sensor</p><br>
+4. #### 🔵**gesture Control Mode**: <p style="font-size: 20px; line-height: 1;">Using the gloves, the car moves according to the tilt angle of your hand in four directions, the `tilt angle` is determined through the `MPU6050` gyroscope sensor which uses `TWI` commnincation protocol</p><br>
 
 
 
