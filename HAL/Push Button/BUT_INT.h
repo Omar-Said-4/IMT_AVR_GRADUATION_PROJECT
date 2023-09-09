@@ -7,7 +7,6 @@
 
 #ifndef BUT_INT_H_
 #define BUT_INT_H_
-#include"DFS.h"
 void But_VidInit();
 Buttons But_VidGetPressed();
 #endif /* BUT_INT_H_ */

@@ -5,9 +5,11 @@
  *  Created on: Jun 19, 2023
  *      Author: saziz
  */
-#define TRIGGER_PIN 0,7
+#include"../../LIB/STD_TYPES.h"
+#include"../../MCAL/ICU/ICU_INTERFACE.h"
+#include"../../MCAL/DIO/DIO_INTERFACE.h"
 #include<avr/delay.h>
-#include"DIO_INTERFACE.h"
+#define TRIGGER_PIN 0,7
 extern u32 snap1,snap2;
 extern u8 flag;
 void UTS_VidInit()

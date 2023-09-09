@@ -4,7 +4,6 @@
  *  Created on: Jun 18, 2023
  *      Author: saziz
  */
-#include"STD_TYPES.h"
 #ifndef MPU_INTERFACE_H_
 #define MPU_INTERFACE_H_
 

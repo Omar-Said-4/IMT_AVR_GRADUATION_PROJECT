@@ -5,12 +5,12 @@
  *  Created on: Jul 23, 2023
  *      Author: saziz
  */
-#include"STD_TYPES.h"
-#include"BIT_MATH.h"
-#include"DIO_INTERFACE.h"
-#include"motors_int.h"
-#include"UART_INTERFACE.h"
-#include"BT_INTERFACE.h"
+#include"../../LIB/STD_TYPES.h"
+#include"../../LIB/BIT_MATH.h"
+#include"../../MCAL/DIO/DIO_INTERFACE.h"
+#include"../../HAL/Motors/motors_int.h"
+#include"../../MCAL/USART/UART_INTERFACE.h"
+#include"../../HAL/Bluetooth/BT_INTERFACE.h"
 static u8 command=0;
 
 void BTC_VidProcess()

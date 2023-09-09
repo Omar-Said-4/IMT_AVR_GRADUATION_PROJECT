@@ -7,9 +7,9 @@
 /******** Desc  	 : --             **********************/
 /***********************************************************/
 /***********************************************************/
-#include"TIM1_PRIV.h"
-#include"STD_TYPES.h"
-#include"BIT_MATH.h"
+#include"../../LIB/STD_TYPES.h"
+#include"../../LIB/BIT_MATH.h"
+#include"../TIMERS/TIM1_PRIV.h"
 u8 OVF;
 u32 snap1,snap2;
 u8 flag=0;
@@ -38,9 +38,6 @@ void ICU_VidStart()
 void ICU_VidStop()
 {
 	CLR_BIT(TCCR1B,1);
-
-	//CLR_BIT(TIMSK,5);
-	//CLR_BIT(TIMSK,2);
 }
 void ICU_VidDisInterrupt()
 {
@@ -67,9 +64,4 @@ void __vector_6(void)
 	   SET_BIT(TCCR1B,6);
        flag=2;	   
 	}
-//	else if(flag==2)
-//	{
-//		snap3=ICR1+(OVF*65536);
-//		flag=3;
-//	}
 }

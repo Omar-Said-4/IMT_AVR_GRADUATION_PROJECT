@@ -5,14 +5,16 @@
  *      Author: saziz
  */
 
+
+#include"../../LIB/STD_TYPES.h"
+#include"../../App/DFS.h"
+#include"../../MCAL/DIO/DIO_INTERFACE.h"
+#include<util/delay.h>
+
 #define B1 0,0
 #define B2 0,1
 #define B3 0,2
 #define B4 0,3
-#include"DFS.h"
-#include<util/delay.h>
-#include"DIO_INTERFACE.h"
-#include"STD_TYPES.h"
 
 void But_VidInit()
 {
@@ -24,7 +26,7 @@ void But_VidInit()
 
 Buttons But_VidGetPressed()
 {
-	/* delay is for debouncing effect*/
+	/* delay is for de-bouncing effect*/
 	if(!DIO_U8GetPinValue(B1))
 	{
 		_delay_ms(50);

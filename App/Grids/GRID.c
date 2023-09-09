@@ -4,51 +4,34 @@
  *  Created on: Jul 26, 2023
  *      Author: saziz
  */
-
-#include"LINE_FOLLOW.h"
-#include"motors_int.h"
-#include"LINE_FOLLOW.h"
-#include"DIO_INTERFACE.h"
+#include"../../LIB/STD_TYPES.h"
+#include"../../LIB/BIT_MATH.h"
+#include"../Line Following/LINE_FOLLOW_DFS.h"
+#include"../Line Following/LINE_FOLLOW.h"
+#include"../../HAL/Motors/motors_int.h"
+#include"../Line Following/LINE_FOLLOW.h"
+#include"../../MCAL/DIO/DIO_INTERFACE.h"
 #include<util/delay.h>
 #include"GRID_DFS.h"
-#include"LINE_FOLLOW_DFS.h"
-#include"UART_INTERFACE.h"
+#include"../../MCAL/USART/UART_INTERFACE.h"
 static u8 currX=1;
 static u8 currY=0;
 static u8 destX=0;
 static u8 destY=0;
 nozzle carn=nright;
-
+/*
+ *
+ *   delays values are based on try and error
+ *
+ * */
 void GRID_VidRotateRight()
 {
 
-
-	//	feedback temp=LF_VidGetState();
-	//	while(temp!=sforward)
-	//	{
-	//		if (temp==sstop){
-	//			MOTORS_VidMoveForward();
-	//			_delay_ms(500);
-	//		}
-	//		else if(temp==sright)
-	//		{
-	//			MOTORS_VidMoveRight();
-	//		}
-	//		else if(temp==sleft)
-	//		{
-	//			MOTORS_VidMoveLeft();
-	//		}
-	//
-	//		temp=LF_VidGetState();
-	//	}
-	//	MOTORS_VidStop();
-	//	//_delay_ms(3000);
-	while(DIO_U8GetPinValue(SENSOR_1_PIN)!=1)
+	while(DIO_U8GetPinValue(SENSOR_1_PIN)!=HIGH)
 	{
 		MOTORS_VidMoveRight();
 	}
 	MOTORS_VidStop();
-	//_delay_ms(3000);
 	while(LF_VidGetState()!=sforward)
 	{
 		MOTORS_VidMoveRight();
@@ -62,38 +45,11 @@ void GRID_VidRotateLeft()
 {
 	MOTORS_SetSpeed(150);
 
-	//	while(LF_VidGetState()!=sstop)
-	//	{
-	//		MOTORS_VidMoveForward();
-	//	}
-	//	MOTORS_VidStop();
-	//	//_delay_ms(3000);
-	//	feedback temp=LF_VidGetState();
-	//	while(temp!=sforward)
-	//	{
-	//		if (temp==sstop){
-	//			MOTORS_VidMoveForward();
-	//			_delay_ms(500);
-	//		}
-	//		else if(temp==sright)
-	//		{
-	//			MOTORS_VidMoveRight();
-	//		}
-	//		else if(temp==sleft)
-	//		{
-	//			MOTORS_VidMoveLeft();
-	//		}
-	//
-	//		temp=LF_VidGetState();
-	//	}
-	//	MOTORS_VidStop();
-	//	//_delay_ms(3000);
-	while(DIO_U8GetPinValue(SENSOR_2_PIN)!=1)
+	while(DIO_U8GetPinValue(SENSOR_2_PIN)!=HIGH)
 	{
 		MOTORS_VidMoveLeft();
 	}
 	MOTORS_VidStop();
-	//	_delay_ms(3000);
 	while(LF_VidGetState()!=sforward)
 	{
 		MOTORS_VidMoveLeft();
@@ -139,7 +95,6 @@ void GRID_VidGotoY()
 			}
 
 			MOTORS_VidStop();
-			//_delay_ms(3000);
 		}
 		carn=nup;
 	}
@@ -170,7 +125,6 @@ void GRID_VidGotoY()
 			}
 
 			MOTORS_VidStop();
-			//_delay_ms(3000);
 		}
 		carn=ndown;
 	}
@@ -227,7 +181,6 @@ void GRID_VidGotoX()
 			}
 
 			MOTORS_VidStop();
-			//_delay_ms(3000);
 		}
 	}
 	else if(destX<currX)
@@ -256,7 +209,6 @@ void GRID_VidGotoX()
 			}
 
 			MOTORS_VidStop();
-			//_delay_ms(3000);
 		}
 	}
 

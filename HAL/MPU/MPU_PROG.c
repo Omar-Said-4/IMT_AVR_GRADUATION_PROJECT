@@ -4,11 +4,11 @@
  *  Created on: Jun 18, 2023
  *      Author: saziz
  */
-
+#include"../../LIB/STD_TYPES.h"
 #include"MPU_INTERFACE.h"
 #include"MPU_PRIV.h"
+#include"../../MCAL/TWI/TWI_INTERFACE.h"
 #include<util/delay.h>
-#include"TWI_INTERFACE.h"
 void MPU_VidInit()
 {
 	_delay_ms(150);

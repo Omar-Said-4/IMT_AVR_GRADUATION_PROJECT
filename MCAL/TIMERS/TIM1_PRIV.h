@@ -11,7 +11,6 @@
 #ifndef TIM1_PRIV_H
 #define TIM1_PRIV_H
 
-#include"STD_TYPES.h"
 #define TCCR1A *((volatile u8*)0x4F)
 #define TCCR1B *((volatile u8*)0x4E)
 #define TCNT1H *((volatile u8*)0x4D)

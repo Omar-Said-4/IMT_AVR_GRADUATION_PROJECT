@@ -9,8 +9,6 @@
 #define LINE_FOLLOW_H_
 
 
-#include"LINE_FOLLOW_DFS.h"
-#include"STD_TYPES.h"
 void LF_VidInit();
 feedback LF_VidGetState();
 feedback LF_BoolObstacle();

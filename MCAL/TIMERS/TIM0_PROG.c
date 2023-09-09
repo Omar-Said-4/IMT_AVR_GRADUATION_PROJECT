@@ -7,11 +7,11 @@
 /******** Desc  	 : --             **********************/
 /***********************************************************/
 /***********************************************************/
+#include"../../LIB/STD_TYPES.h"
+#include"../../LIB/BIT_MATH.h"
 #include"TIM0_PRIV.h"
-#include"STD_TYPES.h"
-#include"BIT_MATH.h"
 #include"TIM0_CONFIG.h"
-#include"DIO_INTERFACE.h"
+#include"../DIO/DIO_INTERFACE.h"
 #if(TIM0_OPERATION_MODE==OVERFLOW)
 static u32 OVF_COUNTER;
 static u8 preload=0;
@@ -117,7 +117,7 @@ void TIM0_VidInit(u32 AlarmOrFreqOrPrescalar)
 #elif (TIM0_OPERATION_MODE==FAST_PWM)
 SET_BIT(TCCR0,3);	
 SET_BIT(TCCR0,6);
-DIO_VidSetPinDirection(1,3,1);
+DIO_VidSetPinDirection(Port_B,3,OUTPUT);
 #if(PWM_MODE==NON_INVERTING_MODE)
 SET_BIT(TCCR0,5);	
 CLR_BIT(TCCR0,4);	

@@ -7,24 +7,26 @@
 /******** Desc  	 : --             **********************/
 /***********************************************************/
 /***********************************************************/
+#include"../../LIB/STD_TYPES.h"
+#include"../../LIB/BIT_MATH.h"
 #include"SPI_PRIV.h"
-#include"STD_TYPES.h"
-#include"BIT_MATH.h"
-#include"DIO_INTERFACE.h"
+#include"../DIO/DIO_INTERFACE.h"
 
 static void(*SPI_SLAVE_CALLBACK)(void)=0;
 void __vector_12(void)
 {
-	SPI_SLAVE_CALLBACK();
+	if(SPI_SLAVE_CALLBACK!=(void *)(0)){
+		SPI_SLAVE_CALLBACK();
+	}
 }
 
 
 void SPI_VidMasterInit()
 {
-	DIO_VidSetPinDirection(1,5,1);
-	DIO_VidSetPinDirection(1,6,0);
-	DIO_VidSetPinDirection(1,4,1);
-	DIO_VidSetPinDirection(1,7,1);
+	DIO_VidSetPinDirection(Port_B,5,OUTPUT);
+	DIO_VidSetPinDirection(Port_B,6,INPUT);
+	DIO_VidSetPinDirection(Port_B,4,OUTPUT);
+	DIO_VidSetPinDirection(Port_B,7,OUTPUT);
 
 	SPCR|=(1<<SPE)|(1<<MSTR)|(1<<SPR0);
 
@@ -34,10 +36,10 @@ void SPI_VidMasterInit()
 
 void SPI_VidSlaveInit()
 {
-	DIO_VidSetPinDirection(1,5,0);
-	DIO_VidSetPinDirection(1,6,1);
-	DIO_VidSetPinDirection(1,4,0);
-	DIO_VidSetPinDirection(1,7,0);
+	DIO_VidSetPinDirection(Port_B,5,INPUT);
+	DIO_VidSetPinDirection(Port_B,6,OUTPUT);
+	DIO_VidSetPinDirection(Port_B,4,INPUT);
+	DIO_VidSetPinDirection(Port_B,7,INPUT);
 	SPCR|=(1<<SPE)|(1<<SPIE)|(1<<SPR0);
 
 }

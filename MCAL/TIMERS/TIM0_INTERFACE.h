@@ -13,7 +13,6 @@
 #ifndef TIM0_INTERFACE_H
 #define TIM0_INTERFACE_H
 
-#include"STD_TYPES.h"
 void TIM0_VidInit(u16 AlarmOrFreqOrPrescalar);
 void TIM0_VidWritePwm(u8 val);
 #endif

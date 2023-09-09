@@ -4,10 +4,10 @@
  *  Created on: Jun 21, 2023
  *      Author: saziz
  */
+#include"../../LIB/STD_TYPES.h"
+#include"../../LIB/BIT_MATH.h"
 #include"TIM2_PRIVATE.h"
-#include"DIO_INTERFACE.h"
-#include"STD_TYPES.h"
-#include"BIT_MATH.h"
+#include"../DIO/DIO_INTERFACE.h"
 void TIM2_VidGetPresValNORMAL(u16 FREQ)
 {
 	u8 pres=1;
@@ -53,7 +53,7 @@ void TIM2_VidInit(u32 FREQ)
 	SET_BIT(TCCR2,5);
 	CLR_BIT(TCCR2,4);
 	TIM2_VidGetPresValNORMAL(FREQ);
-	DIO_VidSetPinDirection(3,7,1);
+	DIO_VidSetPinDirection(Port_D,7,OUTPUT);
 }
 void TIM2_VidWritePwm(u8 val)
 {

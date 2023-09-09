@@ -13,7 +13,6 @@
 #ifndef TIM1_INTERFACE_H
 #define TIM1_INTERFACE_H
 
-#include"STD_TYPES.h"
 void TIM1_VidSetPrescalar(u8 prescalar);
 void TIM1_VidInit();
 void TIM1_VidSetICR1(u16 val);

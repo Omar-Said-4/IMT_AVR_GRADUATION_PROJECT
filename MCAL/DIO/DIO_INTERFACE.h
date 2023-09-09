@@ -1,6 +1,5 @@
 #ifndef DIO_INTERFACE_H
 #define DIO_INTERFACE_H
-#include"STD_TYPES.h"
 #define OUTPUT 1
 #define INPUT 0
 #define HIGH 1
@@ -8,14 +7,14 @@
 #define PORT_OUTPUT 255
 #define PORT_INPUT 0
 typedef enum {
-	
+
 	Port_A,
 	Port_B,
 	Port_C,
 	Port_D
-	
-	
-	
+
+
+
 } et_Port;
 
 typedef enum {
@@ -27,8 +26,8 @@ typedef enum {
 	Pin_5,
 	Pin_6,
 	Pin_7
-	
-	
+
+
 }et_Pin;
 
 void DIO_VidSetPinDirection(u8 port, u8 pin, u8 dir);

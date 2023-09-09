@@ -11,7 +11,6 @@
 #ifndef UART_PRIV_H
 #define UART_PRIV_H
 
-#include"STD_TYPES.h"
 #define UDR *((volatile u8*)0x2C)
 #define UCSRA *((volatile u8*)0x2B)
 #define UCSRB *((volatile u16*)0x2A)

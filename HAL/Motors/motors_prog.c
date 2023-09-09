@@ -1,8 +1,8 @@
-#include "STD_TYPES.h"
-#include "DIO_INTERFACE.h"
+#include "../../LIB/STD_TYPES.h"
+#include "../../MCAL/DIO/DIO_INTERFACE.h"
+#include "../../MCAL/TIMERS/TIM0_INTERFACE.h"
+#include "../../MCAL/TIMERS/TIM2_INTERFACE.h"
 #include "motors_config.h"
-#include "TIM0_INTERFACE.h"
-#include "TIM2_INTERFACE.h"
 #include"motors_int.h"
 
 void MOTORS_VidInit(void)

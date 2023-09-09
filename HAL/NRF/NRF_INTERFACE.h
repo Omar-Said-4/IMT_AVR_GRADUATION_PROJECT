@@ -7,8 +7,7 @@
 
 #ifndef NRF_INTERFACE_H_
 #define NRF_INTERFACE_H_
-#include"STD_TYPES.h"
-#include"BIT_MATH.h"
+
 
 
 void NRF_VidInit(void);
@@ -20,5 +19,4 @@ void NRF_VidStartListening(void);
 u8 NRF_VidAvailable(void);
 bool NRF_U8SendMessage(const void *tx_message,u8 length);
 const char * NRF_VidReadMessage(void);
-void NRF_VidPrintConfig(void);
 #endif /* NRF_INTERFACE_H_ */

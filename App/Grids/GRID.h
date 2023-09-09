@@ -7,7 +7,6 @@
 
 #ifndef GRID_H_
 #define GRID_H_
-#include"STD_TYPES.h"
 void GRID_VidRotateRight();
 void GRID_VidRotateLeft();
 void GRID_VidGotoX();

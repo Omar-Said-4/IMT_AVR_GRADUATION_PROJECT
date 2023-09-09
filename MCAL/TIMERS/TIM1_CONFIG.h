@@ -1,12 +1,12 @@
 /*
- * TIM0_CONFIG.h
+ * TIM1_CONFIG.h
  *
  *  Created on: Oct 23, 2022
  *      Author: saziz
  */
 
-#ifndef TIM0_CONFIG_H_
-#define TIM0_CONFIG_H_
+#ifndef TIM1_CONFIG_H_
+#define TIM1_CONFIG_H_
 
 #define TIM1_OPERATION_MODE FAST_PWM_ICR1
 

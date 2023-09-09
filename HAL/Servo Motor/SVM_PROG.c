@@ -1,8 +1,7 @@
-#include"TIM1_INTERFACE.h"
-#include"STD_TYPES.h"
-#include"BIT_MATH.h"
+#include"../../LIB/STD_TYPES.h"
+#include"../../MCAL/TIMERS/TIM1_INTERFACE.h"
 #include"SVM_CFG.h"
-#include"DIO_INTERFACE.h"
+#include"../../MCAL/DIO/DIO_INTERFACE.h"
 void SVM_VidInit()
 {
 	TIM1_VidInit();

@@ -5,22 +5,28 @@
  *  Created on: Jul 24, 2023
  *      Author: saziz
  */
-#include"STD_TYPES.h"
-#include"BIT_MATH.h"
-#include"motors_int.h"
+#include"../../LIB/STD_TYPES.h"
+#include"../../LIB/BIT_MATH.h"
 #include"LINE_FOLLOW_DFS.h"
-#include"SVM_INTERFACE.h"
+#include"../../HAL/Motors/motors_int.h"
+#include"LINE_FOLLOW_DFS.h"
+#include"../../HAL/Servo Motor/SVM_INTERFACE.h"
 #include"LINE_FOLLOW.h"
-#include"DIO_INTERFACE.h"
-#include"UTS_INTERFACE.h"
+#include"../../MCAL/DIO/DIO_INTERFACE.h"
+#include"../../HAL/Ultrasonic/UTS_INTERFACE.h"
 #include<util/delay.h>
+/*
+ *
+ *   delays values are based on try and error
+ *
+ * */
 static feedback currstate=sforward;
 static feedback prevstate=snone;
 void LF_VidInit()
 {
 
-	DIO_VidSetPinDirection(SENSOR_1_PIN,0);
-	DIO_VidSetPinDirection(SENSOR_2_PIN,0);
+	DIO_VidSetPinDirection(SENSOR_1_PIN,INPUT);
+	DIO_VidSetPinDirection(SENSOR_2_PIN,INPUT);
 	SVM_VidInit();
 	SVM_SetAngleOC1A(-90);
 	_delay_ms(300);
@@ -67,12 +73,9 @@ feedback LF_BoolObstacle()
 {
 	f32 initr=UTS_F32GetReading();
 	UTS_VidStop();
-	//UART_VidParseFloat(initr);
-	//UART_VidPrintString("\n\r");
 	if(initr<15)
 	{
 		MOTORS_VidStop();
-		//UART_VidPrintString("left\n\r");
 		SVM_VidInit();
 		SVM_SetAngleOC1A(-45);
 		_delay_ms(300);
@@ -81,9 +84,6 @@ feedback LF_BoolObstacle()
 		_delay_ms(300);
 		for(int i=0;i<5;i++)
 			initr=UTS_F32GetReading();
-		//UART_VidParseFloat(initr);
-		//UART_VidPrintString("left\n\r");
-		//UART_VidPrintString("R\n\r");
 		if(initr<20)
 		{
 			UTS_VidStop();
@@ -114,23 +114,19 @@ feedback LF_VidGetState()
 {
 	if((DIO_U8GetPinValue(SENSOR_1_PIN)==0)&&DIO_U8GetPinValue(SENSOR_2_PIN)==0)
 	{
-		////UART_VidPrintString("F\n\r");
 		return sforward;
 	}
 	else if((DIO_U8GetPinValue(SENSOR_1_PIN)==1)&&DIO_U8GetPinValue(SENSOR_2_PIN)==0)
 	{
-		////UART_VidPrintString("R\n\r");
 		return sright;
 	}
 
 	else if((DIO_U8GetPinValue(SENSOR_1_PIN)==0)&&DIO_U8GetPinValue(SENSOR_2_PIN)==1)
 	{
-		////UART_VidPrintString("L\n\r");
 		return sleft;
 	}
 	else if((DIO_U8GetPinValue(SENSOR_1_PIN)==1)&&DIO_U8GetPinValue(SENSOR_2_PIN)==1)
 	{
-		////UART_VidPrintString("S\n\r");
 		return sstop;
 	}
 	return snone;
@@ -186,7 +182,6 @@ void LF_VidProcess2()
 		break;
 	case sleft:
 		MOTORS_VidMoveLeft();
-		//_delay_ms(250);
 		break;
 	case sstop:
 		MOTORS_VidMoveForward();

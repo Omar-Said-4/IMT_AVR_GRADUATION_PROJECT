@@ -13,7 +13,6 @@
 #ifndef UART_INTERFACE_H
 #define UART_INTERFACE_H
 
-#include"STD_TYPES.h"
 void UART_VidSendData(u8 data);
 void UART_VidPrintString(string x);
 void UART_VidParseInt(s32 x);

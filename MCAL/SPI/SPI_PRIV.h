@@ -11,7 +11,6 @@
 #ifndef SPI_PRIV_H
 #define SPI_PRIV_H
 
-#include"STD_TYPES.h"
 #define SPCR *((volatile u8*)0x2D)
 #define SPSR *((volatile u8*)0x2E)
 #define SPDR *((volatile u16*)0x2F)
