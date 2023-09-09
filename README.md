@@ -57,7 +57,7 @@
 4. #### 🔵**gesture Control Mode**: <p style="font-size: 20px; line-height: 1;">Using the `glove`, the `car` moves according to the tilt angle of your hand in four directions, the `tilt angle` is determined through the `MPU6050` gyroscope sensor which uses `TWI` commnincation protocol</p><br>
 
 
-
+#### 🔵 A python desktop app is provided for bluetooth communication.
 
 
 
