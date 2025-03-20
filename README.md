@@ -62,7 +62,7 @@
 
 ![Capture](https://github.com/Omar-Said-4/IMT_AVR_GRADUATION_PROJECT/assets/87082462/e5d04696-1623-4d7a-b009-e48d2e6e53d0)
 
-## Project Video: https://drive.google.com/file/d/1LozJLg4PEHOvtu7QN1vIt6a_RnGVHoAy/view?usp=drive_link
+## Project Video: https://drive.google.com/file/d/1EBZU7KgdSynDWISyF_o1-YtDZ394dvoT/view?usp=sharing
 
  
 
